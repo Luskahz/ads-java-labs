@@ -2,10 +2,10 @@ package br.edu.ifsp.ads.dataArchitecture;
 
 // requisitos
 //Crie um programa em que solicita ao usuário o valor de N e, posteriormente os N números que devem ser armazenados
-// em um vetor. Em um segundo momento, exiba o vetor na ordem em que os elementos foram digitados e em ordem inversa.
+// em um vetor. Em um segundo momento, exiba o vetor na ordem em que os elementos foram digitados e em ordem inversa. (feito)
 
 //Crie um programa em JAVA que solicita ao usuário o valor de N e, posteriormente, alimente o vetor com valores
-//aleatórios entre 0 e M (M também é informado pelo usuário). Exiba o vetor gerado.
+//aleatórios entre 0 e M (M também é informado pelo usuário). Exiba o vetor gerado.(feito)
 
 //Crie um método chamado Insere_Exclusivo(int vet[], int N) que alimenta um vetor de N elementos com valores aleatórios
 //entre 1 e N sem que ocorram números repetidos. Exiba o vetor gerado.
@@ -51,6 +51,23 @@ public class Facts {
         }
         vetor[tamanho] = n;
         tamanho++;
+    }
+
+    public int validVectorLotation(int[] vec){
+        int tamanho = 0;
+        for(int i = 0; i < vec.length; i++){
+            if(vec[i] == 0){
+                tamanho++;
+            }
+        }
+        return tamanho;
+    }
+    public void adicionarInVector(int[] vec, int n) {
+        tamanho = validVectorLotation(vec);
+        if (tamanho >= vetor.length) {
+            throw new IllegalStateException("Vetor cheio");
+        }
+        vetor[tamanho] = n;
     }
 
     public int[] reverter(int[] vetor){
@@ -100,8 +117,25 @@ public class Facts {
 
     }
 
-    public int[] insere_exclusivo(int vet[], int n){
-        return null;
+    private boolean isNumberInVector(int[] vet, int n){
+        for(int i = 0; i< vet.length; i++){
+            if(vet[i] == n){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void insere_exclusivo(int vet[], int n){
+        for(int i = 0; i< vet.length; i++){
+            int number = 0;
+            while(number == 0){
+                number = generateRandomNumber(n);
+            }
+            if(!isNumberInVector(vet, number)){
+                adicionarInVector(vet, number);
+            }
+        }
     }
 
 

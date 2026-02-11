@@ -8,7 +8,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Labs gamificador = new Labs(new Facts(), scanner);
 
-        gamificador.Ex2();
+        gamificador.Ex3();
 
         
 

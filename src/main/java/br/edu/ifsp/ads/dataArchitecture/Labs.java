@@ -34,8 +34,15 @@ public class Labs {
         int[] novoVetorAleatorio = facts.popularVetorComNumerosAleatorios(n, m);
         System.out.println("Vetor aleatorio");
         System.out.printf(facts.toString());
+    }
 
-
+    public void Ex3(){
+        System.out.printf("insira o tamanho do vetor: ");
+        int n = entrada.nextInt();
+        facts.create(n);
+        System.out.println("Segue o vetor com os numeros aleatorios: ");
+        facts.insere_exclusivo(facts.getVetor(), n);
+        System.out.println(facts.toString());
 
     }
 
