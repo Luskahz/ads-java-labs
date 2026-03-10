@@ -1,200 +1,160 @@
 package br.edu.ifsp.ads.dataArchitecture.sortFunctions;
 
+import java.util.function.BiConsumer;
+
 public class main {
 
+
+    public static void runner(String nomeAlgoritmo,
+                              String tamanhoVetor,
+                              String tipoVet,
+                              BiConsumer<int[], Integer> sortFunction,
+                              int[] vet) {
+
+        long inicio = System.nanoTime();
+
+        sortFunction.accept(vet, vet.length);
+
+        long fim = System.nanoTime();
+        long tempoNs = fim - inicio;
+
+        double tempoMs = tempoNs / 1_000_000.0;
+
+        System.out.printf(
+                "Tempo de ordenacao vet %s, função %s, vetor de %s valores: %.4f ms%n",
+                tipoVet,
+                nomeAlgoritmo,
+                tamanhoVetor,
+                tempoMs
+        );
+    }
+
+
     public static void main(String[] args) {
+        int n = 5;
 
-        int N = 100;
-        int vetAleatorio_1[] = new int[N];
-        int vetMelhorCaso_1[] = new int[N];
-        int vetPiorCaso_1[] = new int[N];
+        Initializer initializer = new Initializer(n); // aqui eu crio a base que vou testar, meu teste vai rodar 4 vezes, pra n pesar na maquina, eu só mudo o numero no parametro pra testar com o tamanho diferente
+        runner("Bubble sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::bubbleSort, initializer.getAleatorio());
+        runner("Bubble sort", String.valueOf(n)+ " mil", "Melhor", Facts::bubbleSort, initializer.getMelhor());
+        runner("Bubble sort", String.valueOf(n)+ " mil", "Pior", Facts::bubbleSort, initializer.getPior());
 
-        inicializarVetor(vetAleatorio_1, N, 0); //0-aleatório, 1-crescente, 2-decrescente
-        inicializarVetor(vetMelhorCaso_1, N, 1); //0-aleatório, 1-crescente, 2-decrescente
-        inicializarVetor(vetPiorCaso_1, N, 2); //0-aleatório, 1-crescente, 2-decrescente
+        runner("Selection sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::selectionSort, initializer.getAleatorio());
+        runner("Selection sort", String.valueOf(n)+ " mil", "Melhor", Facts::selectionSort, initializer.getMelhor());
+        runner("Selection sort", String.valueOf(n)+ " mil", "Pior", Facts::selectionSort, initializer.getPior());
 
-        int vetAleatorio_2[] = vetAleatorio_1.clone();
-        int vetMelhorCaso_2[] = vetMelhorCaso_1.clone();
-        int vetPiorCaso_2[] = vetPiorCaso_1.clone();
+        runner("Insertion sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::insertionSort, initializer.getAleatorio());
+        runner("Insertion sort", String.valueOf(n)+ " mil", "Melhor", Facts::insertionSort, initializer.getMelhor());
+        runner("Insertion sort", String.valueOf(n)+ " mil", "Pior", Facts::insertionSort, initializer.getPior());
 
-        int vetAleatorio_3[] = vetAleatorio_1.clone();
-        int vetMelhorCaso_3[] = vetMelhorCaso_1.clone();
-        int vetPiorCaso_3[] = vetPiorCaso_1.clone();
+        runner("Merge sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::mergeSort, initializer.getAleatorio());
+        runner("Merge sort", String.valueOf(n)+ " mil", "Melhor", Facts::mergeSort, initializer.getMelhor());
+        runner("Merge sort", String.valueOf(n)+ " mil", "Pior", Facts::mergeSort, initializer.getPior());
 
-        long inicio, fim, tempoS, tempoMS;
+        runner("Heap sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::heapSort, initializer.getAleatorio());
+        runner("Heap sort", String.valueOf(n)+ " mil", "Melhor", Facts::heapSort, initializer.getMelhor());
+        runner("Heap sort", String.valueOf(n)+ " mil", "Pior", Facts::heapSort, initializer.getPior());
 
-        //////// ORDENAÇÃO RUIM ! /////////////////
+        runner("Counting sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::countingSort, initializer.getAleatorio());
+        runner("Counting sort", String.valueOf(n)+ " mil", "Melhor", Facts::countingSort, initializer.getMelhor());
+        runner("Counting sort", String.valueOf(n)+ " mil", "Pior", Facts::countingSort, initializer.getPior());
 
-        //--- ALEATORIO ---//
-        inicio = System.currentTimeMillis();
-        ordenar(vetAleatorio_1, N);
-        fim = System.currentTimeMillis();
-        tempoS = (fim - inicio) / 1000;
-        tempoMS = (fim - inicio) - tempoS * 1000;
-        System.out.println("Tempo de ordenacao Aleatorio: " + tempoS + "s" + tempoMS + "ms");
+        runner("Quick sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::quickSort, initializer.getAleatorio());
+        runner("Quick sort", String.valueOf(n)+ " mil", "Melhor", Facts::quickSort, initializer.getMelhor());
+        runner("Quick sort", String.valueOf(n)+ " mil", "Pior", Facts::quickSort, initializer.getPior());
 
-        //--- MELHOR CASO ---//
-        inicio = System.currentTimeMillis();
-        ordenar(vetMelhorCaso_1, N);
-        fim = System.currentTimeMillis();
-        tempoS = (fim - inicio) / 1000;
-        tempoMS = (fim - inicio) - tempoS * 1000;
-        System.out.println("Tempo de ordenacao Melhor Caso: " + tempoS + "s" + tempoMS + "ms");
+        n = 10;
+        initializer = new Initializer(n);
+        runner("Bubble sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::bubbleSort, initializer.getAleatorio());
+        runner("Bubble sort", String.valueOf(n)+ " mil", "Melhor", Facts::bubbleSort, initializer.getMelhor());
+        runner("Bubble sort", String.valueOf(n)+ " mil", "Pior", Facts::bubbleSort, initializer.getPior());
 
-        //--- PIOR CASO ---//
-        inicio = System.currentTimeMillis();
-        ordenar(vetPiorCaso_1, N);
-        fim = System.currentTimeMillis();
-        tempoS = (fim - inicio) / 1000;
-        tempoMS = (fim - inicio) - tempoS * 1000;
-        System.out.println("Tempo de ordenacao Pior Caso: " + tempoS + "s" + tempoMS + "ms");
-        System.out.println("--------------------------------------");
+        runner("Selection sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::selectionSort, initializer.getAleatorio());
+        runner("Selection sort", String.valueOf(n)+ " mil", "Melhor", Facts::selectionSort, initializer.getMelhor());
+        runner("Selection sort", String.valueOf(n)+ " mil", "Pior", Facts::selectionSort, initializer.getPior());
+
+        runner("Insertion sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::insertionSort, initializer.getAleatorio());
+        runner("Insertion sort", String.valueOf(n)+ " mil", "Melhor", Facts::insertionSort, initializer.getMelhor());
+        runner("Insertion sort", String.valueOf(n)+ " mil", "Pior", Facts::insertionSort, initializer.getPior());
+
+        runner("Merge sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::mergeSort, initializer.getAleatorio());
+        runner("Merge sort", String.valueOf(n)+ " mil", "Melhor", Facts::mergeSort, initializer.getMelhor());
+        runner("Merge sort", String.valueOf(n)+ " mil", "Pior", Facts::mergeSort, initializer.getPior());
+
+        runner("Heap sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::heapSort, initializer.getAleatorio());
+        runner("Heap sort", String.valueOf(n)+ " mil", "Melhor", Facts::heapSort, initializer.getMelhor());
+        runner("Heap sort", String.valueOf(n)+ " mil", "Pior", Facts::heapSort, initializer.getPior());
+
+        runner("Counting sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::countingSort, initializer.getAleatorio());
+        runner("Counting sort", String.valueOf(n)+ " mil", "Melhor", Facts::countingSort, initializer.getMelhor());
+        runner("Counting sort", String.valueOf(n)+ " mil", "Pior", Facts::countingSort, initializer.getPior());
+
+        runner("Quick sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::quickSort, initializer.getAleatorio());
+        runner("Quick sort", String.valueOf(n)+ " mil", "Melhor", Facts::quickSort, initializer.getMelhor());
+        runner("Quick sort", String.valueOf(n)+ " mil", "Pior", Facts::quickSort, initializer.getPior());
+
+        n = 30;
+        initializer = new Initializer(n);
+        runner("Bubble sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::bubbleSort, initializer.getAleatorio());
+        runner("Bubble sort", String.valueOf(n)+ " mil", "Melhor", Facts::bubbleSort, initializer.getMelhor());
+        runner("Bubble sort", String.valueOf(n)+ " mil", "Pior", Facts::bubbleSort, initializer.getPior());
+
+        runner("Selection sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::selectionSort, initializer.getAleatorio());
+        runner("Selection sort", String.valueOf(n)+ " mil", "Melhor", Facts::selectionSort, initializer.getMelhor());
+        runner("Selection sort", String.valueOf(n)+ " mil", "Pior", Facts::selectionSort, initializer.getPior());
+
+        runner("Insertion sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::insertionSort, initializer.getAleatorio());
+        runner("Insertion sort", String.valueOf(n)+ " mil", "Melhor", Facts::insertionSort, initializer.getMelhor());
+        runner("Insertion sort", String.valueOf(n)+ " mil", "Pior", Facts::insertionSort, initializer.getPior());
+
+        runner("Merge sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::mergeSort, initializer.getAleatorio());
+        runner("Merge sort", String.valueOf(n)+ " mil", "Melhor", Facts::mergeSort, initializer.getMelhor());
+        runner("Merge sort", String.valueOf(n)+ " mil", "Pior", Facts::mergeSort, initializer.getPior());
+
+        runner("Heap sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::heapSort, initializer.getAleatorio());
+        runner("Heap sort", String.valueOf(n)+ " mil", "Melhor", Facts::heapSort, initializer.getMelhor());
+        runner("Heap sort", String.valueOf(n)+ " mil", "Pior", Facts::heapSort, initializer.getPior());
+
+        runner("Counting sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::countingSort, initializer.getAleatorio());
+        runner("Counting sort", String.valueOf(n)+ " mil", "Melhor", Facts::countingSort, initializer.getMelhor());
+        runner("Counting sort", String.valueOf(n)+ " mil", "Pior", Facts::countingSort, initializer.getPior());
+
+        runner("Quick sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::quickSort, initializer.getAleatorio());
+        runner("Quick sort", String.valueOf(n)+ " mil", "Melhor", Facts::quickSort, initializer.getMelhor());
+        runner("Quick sort", String.valueOf(n)+ " mil", "Pior", Facts::quickSort, initializer.getPior());
+
+        n = 50;
+        initializer = new Initializer(n);
+        runner("Bubble sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::bubbleSort, initializer.getAleatorio());
+        runner("Bubble sort", String.valueOf(n)+ " mil", "Melhor", Facts::bubbleSort, initializer.getMelhor());
+        runner("Bubble sort", String.valueOf(n)+ " mil", "Pior", Facts::bubbleSort, initializer.getPior());
+
+        runner("Selection sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::selectionSort, initializer.getAleatorio());
+        runner("Selection sort", String.valueOf(n)+ " mil", "Melhor", Facts::selectionSort, initializer.getMelhor());
+        runner("Selection sort", String.valueOf(n)+ " mil", "Pior", Facts::selectionSort, initializer.getPior());
+
+        runner("Insertion sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::insertionSort, initializer.getAleatorio());
+        runner("Insertion sort", String.valueOf(n)+ " mil", "Melhor", Facts::insertionSort, initializer.getMelhor());
+        runner("Insertion sort", String.valueOf(n)+ " mil", "Pior", Facts::insertionSort, initializer.getPior());
+
+        runner("Merge sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::mergeSort, initializer.getAleatorio());
+        runner("Merge sort", String.valueOf(n)+ " mil", "Melhor", Facts::mergeSort, initializer.getMelhor());
+        runner("Merge sort", String.valueOf(n)+ " mil", "Pior", Facts::mergeSort, initializer.getPior());
+
+        runner("Heap sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::heapSort, initializer.getAleatorio());
+        runner("Heap sort", String.valueOf(n)+ " mil", "Melhor", Facts::heapSort, initializer.getMelhor());
+        runner("Heap sort", String.valueOf(n)+ " mil", "Pior", Facts::heapSort, initializer.getPior());
+
+        runner("Counting sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::countingSort, initializer.getAleatorio());
+        runner("Counting sort", String.valueOf(n)+ " mil", "Melhor", Facts::countingSort, initializer.getMelhor());
+        runner("Counting sort", String.valueOf(n)+ " mil", "Pior", Facts::countingSort, initializer.getPior());
+
+        runner("Quick sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::quickSort, initializer.getAleatorio());
+        runner("Quick sort", String.valueOf(n)+ " mil", "Melhor", Facts::quickSort, initializer.getMelhor());
+        runner("Quick sort", String.valueOf(n)+ " mil", "Pior", Facts::quickSort, initializer.getPior());
 
 
-        //////// ORDENAÇÃO MELHORADO ! /////////////////
 
-        //--- ALEATORIO ---//
-        inicio = System.currentTimeMillis();
-        ordenarMelhorado(vetAleatorio_2, N);
-        fim = System.currentTimeMillis();
-        tempoS = (fim - inicio) / 1000;
-        tempoMS = (fim - inicio) - tempoS * 1000;
-        System.out.println("Tempo de ordenacao(melhorado) Aleatorio: " + tempoS + "s" + tempoMS + "ms");
-
-        //--- MELHOR CASO ---//
-        inicio = System.currentTimeMillis();
-        ordenarMelhorado(vetMelhorCaso_2, N);
-        fim = System.currentTimeMillis();
-        tempoS = (fim - inicio) / 1000;
-        tempoMS = (fim - inicio) - tempoS * 1000;
-        System.out.println("Tempo de ordenacao(melhorado) Melhor Caso: " + tempoS + "s" + tempoMS + "ms");
-
-        //--- PIOR CASO ---//
-        inicio = System.currentTimeMillis();
-        ordenarMelhorado(vetPiorCaso_2, N);
-        fim = System.currentTimeMillis();
-        tempoS = (fim - inicio) / 1000;
-        tempoMS = (fim - inicio) - tempoS * 1000;
-        System.out.println("Tempo de ordenacao(melhorado) Pior Caso: " + tempoS + "s" + tempoMS + "ms");
-        System.out.println("--------------------------------------");
-
-        /////////// ORDENAÇÃO MAIOR-MENOR ! /////////////////
-
-        //--- ALEATORIO ---//
-        inicio = System.currentTimeMillis();
-        ordenarMaiorMenor(vetAleatorio_3, N);
-        fim = System.currentTimeMillis();
-        tempoS = (fim - inicio) / 1000;
-        tempoMS = (fim - inicio) - tempoS * 1000;
-        System.out.println("Tempo de ordenacao(maior-menor) Aleatorio: " + tempoS + "s" + tempoMS + "ms");
-
-        //--- MELHOR CASO ---//
-        inicio = System.currentTimeMillis();
-        ordenarMaiorMenor(vetMelhorCaso_3, N);
-        fim = System.currentTimeMillis();
-        tempoS = (fim - inicio) / 1000;
-        tempoMS = (fim - inicio) - tempoS * 1000;
-        System.out.println("Tempo de ordenacao(maior-menor) Melhor Caso: " + tempoS + "s" + tempoMS + "ms");
-
-        //--- PIOR CASO ---//
-        inicio = System.currentTimeMillis();
-        ordenarMaiorMenor(vetPiorCaso_3, N);
-        fim = System.currentTimeMillis();
-        tempoS = (fim - inicio) / 1000;
-        tempoMS = (fim - inicio) - tempoS * 1000;
-        System.out.println("Tempo de ordenacao(maior-menor) Pior Caso: " + tempoS + "s" + tempoMS + "ms");
-
-
-        System.out.println("--------------------------------------");
-        exibirVetor(vetAleatorio_1, N);
-        exibirVetor(vetMelhorCaso_1, N);
-        exibirVetor(vetPiorCaso_1, N);
-        System.out.println("--------------------------------------");
-        exibirVetor(vetAleatorio_2, N);
-        exibirVetor(vetMelhorCaso_2, N);
-        exibirVetor(vetPiorCaso_2, N);
-        System.out.println("--------------------------------------");
-        exibirVetor(vetAleatorio_3, N);
-        exibirVetor(vetMelhorCaso_3, N);
-        exibirVetor(vetPiorCaso_3, N);
-        System.out.println("--------------------------------------");
-
-    }
-
-    static void inicializarVetor(int vet[], int N, int s) {
-        switch(s){
-            case 0:
-                for (int i = 0; i < N; i++)
-                    vet[i] = (int) (Math.random() * (N * 2));
-                break;
-            case 1:
-                for (int i = 0; i < N; i++)
-                    vet[i] = i+1;
-                break;
-            case 2:
-                for (int i = 0; i < N; i++)
-                    vet[i] = N-i;
-                break;
-        }
-    }
-
-    private static void exibirVetor(int[] vet, int N) {
-        for (int i = 0; i < N; i++) {
-            if (vet[i] < 10) {
-                System.out.print("0" + vet[i] + " ");
-            } else {
-                System.out.print(vet[i] + " ");
-            }
-        }
-        System.out.println("");
-    }
-
-    //a = maior, b = menor
-    private static void troca(int[] vet, int a, int b) {
-        int aux = vet[a];
-        vet[a] = vet[b];
-        vet[b] = aux;
-    }
-
-    private static void ordenar(int[] vet, int N) {
-        for(int i=0; i<N; i++){
-            for(int j=0; j<N-i-1; j++){
-                if(vet[j]>vet[j+1])
-                    troca(vet, j, j+1);
-            }
-        }
-    }
-
-    private static void ordenarMelhorado(int[] vet, int N){
-        for(int i=0; i<N; i++){
-            boolean hasChange = false;
-            for(int j=0; j<N-i-1; j++){
-                if(vet[j]>vet[j+1])
-                    troca(vet, j, j+1);
-                hasChange = true;
-            }
-
-            if(!hasChange) return;
-        }
 
     }
-
-    private static void ordenarMaiorMenor(int[] vet, int N) {
-        for(int i = 0; i<N; i++){
-            boolean hasChange = false;
-            for(int j=i;j<N-i-1;j++){
-                if(vet[j]>vet[j+1]){
-                    troca(vet, j, j+1);
-                    hasChange = true;
-                    if(vet[j]<vet[i]){
-                        troca(vet, i, j);
-                    }
-                    if(!hasChange)return;
-                }
-            }
-        }
-
-    }
-
 
 }
