@@ -16,7 +16,7 @@ public class Runner {
         Labs labs = new Labs(scanner, facts);
 
 
-        labs.Ex5();
+        labs.Ex8();
 
 
 

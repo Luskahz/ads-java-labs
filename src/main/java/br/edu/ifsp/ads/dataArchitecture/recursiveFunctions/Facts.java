@@ -11,12 +11,10 @@ public class Facts {
      */
     public void exibeRec(int i){
         if(i == 1){
-            System.out.println(String.valueOf(i));
-            System.out.println("contar terminou");
+            System.out.println(i);
         }else{
             i--;
-            System.out.println(String.valueOf(i));
-            System.out.println("seguiu com a recursividade");
+            System.out.println(i);
             exibeRec(i);
         }
     }
@@ -72,6 +70,7 @@ public class Facts {
      * 5. Função recursiva que retorne o menor elemento de um vetor
      *
      * @param vet vetor inserido pelo usuario, o menor valor sera descoberto a partir dos valores deste vetor
+     * @param i iterador dos indices do vetor, usado pra manipulação
      * @return menor valor presente no vetor vet
      */
     public int findSmallerValueFromVet(int[] vet, int i){
@@ -79,17 +78,19 @@ public class Facts {
             return vet[i];
         }
         int maior = findSmallerValueFromVet(vet, i+1);
-        return (vet[i] > maior)? vet[i] : maior;
+        return (vet[i] < maior)? vet[i] : maior;
     }
 
 
     /**
-     * 6. Função recursiva que conte quantos dígitos tem um número inteiro positivo entre 0 e 99.999.
+     * 6. Função recursiva que conte quantos dígitos tem um número inteiro positivo.
      * @param n numero fornecido pelo usuário, o programa vai contar quantos digitos possuí este numero
      * @return retorna a quantidade de dígitos de n
      */
     public int contDigitsFromNumber(int n){
-        return n;
+        if(n < 10) return 1;
+        return 1 + contDigitsFromNumber(n/10);
+
     }
 
 
@@ -99,15 +100,22 @@ public class Facts {
      * @return retorna a string invertida
      */
     public String revertCharFromString(String txt){
-        return txt;
+        if(txt.length() == 1|| txt == null){
+            return txt;
+        }
+        return revertCharFromString(txt.substring(1))+ txt.charAt(0);
     }
 
     /**
+     * converte um numero decimal fornecido pelo usuario em sua versão base binaria
      * @param n valor que sera convertido para binario
      * @return retorna o valor de n em binario
      */
-    public int convertDecToBin(int n){
-        return n;
+    public void convertDecToBin(int n){
+        if(n>0){
+            convertDecToBin(n/2);
+            System.out.println(n%2);
+        } else System.out.println(0);
     }
 
 }

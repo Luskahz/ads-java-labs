@@ -51,4 +51,21 @@ public class Labs {
         System.out.println("o menor valor do vetor é: " + result);
     }
 
+    public void Ex6(){
+        int n = 123456;
+        int result = facts.contDigitsFromNumber(n);
+        System.out.println("o numero possuí: " + result+ " digitos");
+    }
+    public void Ex7(){
+        String txt = "Lucas";
+        String result = facts.revertCharFromString(txt);
+        System.out.println("Texto invertido: " + result);
+    }
+    public void Ex8(){
+        int n = 23;
+        System.out.println("numero edcimal convertido a binario: ");
+        facts.convertDecToBin(n);
+
+    }
+
 }
