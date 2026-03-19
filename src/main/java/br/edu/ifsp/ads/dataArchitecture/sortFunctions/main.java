@@ -35,125 +35,120 @@ public class main {
         System.out.println("nome_algoritmo, tipo_vetor, tamanho_vetor, tempo_ms");
 
         Initializer initializer = new Initializer(n); // aqui eu crio a base que vou testar, meu teste vai rodar 4 vezes, pra n pesar na maquina, eu só mudo o numero no parametro pra testar com o tamanho diferente
-        runner("Bubble sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::bubbleSort, initializer.getAleatorio());
-        runner("Bubble sort", String.valueOf(n)+ " mil", "Melhor", Facts::bubbleSort, initializer.getMelhor());
-        runner("Bubble sort", String.valueOf(n)+ " mil", "Pior", Facts::bubbleSort, initializer.getPior());
+        runner("Bubble sort", String.valueOf(n), "Aleatorio", Facts::bubbleSort, initializer.getAleatorio());
+        runner("Bubble sort", String.valueOf(n), "Melhor", Facts::bubbleSort, initializer.getMelhor());
+        runner("Bubble sort", String.valueOf(n), "Pior", Facts::bubbleSort, initializer.getPior());
 
-        runner("Selection sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::selectionSort, initializer.getAleatorio());
-        runner("Selection sort", String.valueOf(n)+ " mil", "Melhor", Facts::selectionSort, initializer.getMelhor());
-        runner("Selection sort", String.valueOf(n)+ " mil", "Pior", Facts::selectionSort, initializer.getPior());
+        runner("Selection sort", String.valueOf(n), "Aleatorio", Facts::selectionSort, initializer.getAleatorio());
+        runner("Selection sort", String.valueOf(n), "Melhor", Facts::selectionSort, initializer.getMelhor());
+        runner("Selection sort", String.valueOf(n), "Pior", Facts::selectionSort, initializer.getPior());
 
-        runner("Insertion sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::insertionSort, initializer.getAleatorio());
-        runner("Insertion sort", String.valueOf(n)+ " mil", "Melhor", Facts::insertionSort, initializer.getMelhor());
-        runner("Insertion sort", String.valueOf(n)+ " mil", "Pior", Facts::insertionSort, initializer.getPior());
+        runner("Insertion sort", String.valueOf(n), "Aleatorio", Facts::insertionSort, initializer.getAleatorio());
+        runner("Insertion sort", String.valueOf(n), "Melhor", Facts::insertionSort, initializer.getMelhor());
+        runner("Insertion sort", String.valueOf(n), "Pior", Facts::insertionSort, initializer.getPior());
 
-        runner("Merge sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::mergeSort, initializer.getAleatorio());
-        runner("Merge sort", String.valueOf(n)+ " mil", "Melhor", Facts::mergeSort, initializer.getMelhor());
-        runner("Merge sort", String.valueOf(n)+ " mil", "Pior", Facts::mergeSort, initializer.getPior());
+        runner("Merge sort", String.valueOf(n), "Aleatorio", Facts::mergeSort, initializer.getAleatorio());
+        runner("Merge sort", String.valueOf(n), "Melhor", Facts::mergeSort, initializer.getMelhor());
+        runner("Merge sort", String.valueOf(n), "Pior", Facts::mergeSort, initializer.getPior());
 
-        runner("Heap sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::heapSort, initializer.getAleatorio());
-        runner("Heap sort", String.valueOf(n)+ " mil", "Melhor", Facts::heapSort, initializer.getMelhor());
-        runner("Heap sort", String.valueOf(n)+ " mil", "Pior", Facts::heapSort, initializer.getPior());
+        runner("Heap sort", String.valueOf(n), "Aleatorio", Facts::heapSort, initializer.getAleatorio());
+        runner("Heap sort", String.valueOf(n), "Melhor", Facts::heapSort, initializer.getMelhor());
+        runner("Heap sort", String.valueOf(n), "Pior", Facts::heapSort, initializer.getPior());
 
-        runner("Counting sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::countingSort, initializer.getAleatorio());
-        runner("Counting sort", String.valueOf(n)+ " mil", "Melhor", Facts::countingSort, initializer.getMelhor());
-        runner("Counting sort", String.valueOf(n)+ " mil", "Pior", Facts::countingSort, initializer.getPior());
+        runner("Counting sort", String.valueOf(n), "Aleatorio", Facts::countingSort, initializer.getAleatorio());
+        runner("Counting sort", String.valueOf(n), "Melhor", Facts::countingSort, initializer.getMelhor());
+        runner("Counting sort", String.valueOf(n), "Pior", Facts::countingSort, initializer.getPior());
 
-        runner("Quick sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::quickSort, initializer.getAleatorio());
-        runner("Quick sort", String.valueOf(n)+ " mil", "Melhor", Facts::quickSort, initializer.getMelhor());
-        runner("Quick sort", String.valueOf(n)+ " mil", "Pior", Facts::quickSort, initializer.getPior());
+        runner("Quick sort", String.valueOf(n), "Aleatorio", Facts::quickSort, initializer.getAleatorio());
+        runner("Quick sort", String.valueOf(n), "Melhor", Facts::quickSort, initializer.getMelhor());
+        runner("Quick sort", String.valueOf(n), "Pior", Facts::quickSort, initializer.getPior());
 
         n = 10;
-        initializer = new Initializer(n);
-        runner("Bubble sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::bubbleSort, initializer.getAleatorio());
-        runner("Bubble sort", String.valueOf(n)+ " mil", "Melhor", Facts::bubbleSort, initializer.getMelhor());
-        runner("Bubble sort", String.valueOf(n)+ " mil", "Pior", Facts::bubbleSort, initializer.getPior());
+        runner("Bubble sort", String.valueOf(n), "Aleatorio", Facts::bubbleSort, initializer.getAleatorio());
+        runner("Bubble sort", String.valueOf(n), "Melhor", Facts::bubbleSort, initializer.getMelhor());
+        runner("Bubble sort", String.valueOf(n), "Pior", Facts::bubbleSort, initializer.getPior());
 
-        runner("Selection sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::selectionSort, initializer.getAleatorio());
-        runner("Selection sort", String.valueOf(n)+ " mil", "Melhor", Facts::selectionSort, initializer.getMelhor());
-        runner("Selection sort", String.valueOf(n)+ " mil", "Pior", Facts::selectionSort, initializer.getPior());
+        runner("Selection sort", String.valueOf(n), "Aleatorio", Facts::selectionSort, initializer.getAleatorio());
+        runner("Selection sort", String.valueOf(n), "Melhor", Facts::selectionSort, initializer.getMelhor());
+        runner("Selection sort", String.valueOf(n), "Pior", Facts::selectionSort, initializer.getPior());
 
-        runner("Insertion sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::insertionSort, initializer.getAleatorio());
-        runner("Insertion sort", String.valueOf(n)+ " mil", "Melhor", Facts::insertionSort, initializer.getMelhor());
-        runner("Insertion sort", String.valueOf(n)+ " mil", "Pior", Facts::insertionSort, initializer.getPior());
+        runner("Insertion sort", String.valueOf(n), "Aleatorio", Facts::insertionSort, initializer.getAleatorio());
+        runner("Insertion sort", String.valueOf(n), "Melhor", Facts::insertionSort, initializer.getMelhor());
+        runner("Insertion sort", String.valueOf(n), "Pior", Facts::insertionSort, initializer.getPior());
 
-        runner("Merge sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::mergeSort, initializer.getAleatorio());
-        runner("Merge sort", String.valueOf(n)+ " mil", "Melhor", Facts::mergeSort, initializer.getMelhor());
-        runner("Merge sort", String.valueOf(n)+ " mil", "Pior", Facts::mergeSort, initializer.getPior());
+        runner("Merge sort", String.valueOf(n), "Aleatorio", Facts::mergeSort, initializer.getAleatorio());
+        runner("Merge sort", String.valueOf(n), "Melhor", Facts::mergeSort, initializer.getMelhor());
+        runner("Merge sort", String.valueOf(n), "Pior", Facts::mergeSort, initializer.getPior());
 
-        runner("Heap sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::heapSort, initializer.getAleatorio());
-        runner("Heap sort", String.valueOf(n)+ " mil", "Melhor", Facts::heapSort, initializer.getMelhor());
-        runner("Heap sort", String.valueOf(n)+ " mil", "Pior", Facts::heapSort, initializer.getPior());
+        runner("Heap sort", String.valueOf(n), "Aleatorio", Facts::heapSort, initializer.getAleatorio());
+        runner("Heap sort", String.valueOf(n), "Melhor", Facts::heapSort, initializer.getMelhor());
+        runner("Heap sort", String.valueOf(n), "Pior", Facts::heapSort, initializer.getPior());
 
-        runner("Counting sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::countingSort, initializer.getAleatorio());
-        runner("Counting sort", String.valueOf(n)+ " mil", "Melhor", Facts::countingSort, initializer.getMelhor());
-        runner("Counting sort", String.valueOf(n)+ " mil", "Pior", Facts::countingSort, initializer.getPior());
+        runner("Counting sort", String.valueOf(n), "Aleatorio", Facts::countingSort, initializer.getAleatorio());
+        runner("Counting sort", String.valueOf(n), "Melhor", Facts::countingSort, initializer.getMelhor());
+        runner("Counting sort", String.valueOf(n), "Pior", Facts::countingSort, initializer.getPior());
 
-        runner("Quick sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::quickSort, initializer.getAleatorio());
-        runner("Quick sort", String.valueOf(n)+ " mil", "Melhor", Facts::quickSort, initializer.getMelhor());
-        runner("Quick sort", String.valueOf(n)+ " mil", "Pior", Facts::quickSort, initializer.getPior());
+        runner("Quick sort", String.valueOf(n), "Aleatorio", Facts::quickSort, initializer.getAleatorio());
+        runner("Quick sort", String.valueOf(n), "Melhor", Facts::quickSort, initializer.getMelhor());
+        runner("Quick sort", String.valueOf(n), "Pior", Facts::quickSort, initializer.getPior());
 
-        n = 30;
-        initializer = new Initializer(n);
-        runner("Bubble sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::bubbleSort, initializer.getAleatorio());
-        runner("Bubble sort", String.valueOf(n)+ " mil", "Melhor", Facts::bubbleSort, initializer.getMelhor());
-        runner("Bubble sort", String.valueOf(n)+ " mil", "Pior", Facts::bubbleSort, initializer.getPior());
+        n=30;
+        runner("Bubble sort", String.valueOf(n), "Aleatorio", Facts::bubbleSort, initializer.getAleatorio());
+        runner("Bubble sort", String.valueOf(n), "Melhor", Facts::bubbleSort, initializer.getMelhor());
+        runner("Bubble sort", String.valueOf(n), "Pior", Facts::bubbleSort, initializer.getPior());
 
-        runner("Selection sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::selectionSort, initializer.getAleatorio());
-        runner("Selection sort", String.valueOf(n)+ " mil", "Melhor", Facts::selectionSort, initializer.getMelhor());
-        runner("Selection sort", String.valueOf(n)+ " mil", "Pior", Facts::selectionSort, initializer.getPior());
+        runner("Selection sort", String.valueOf(n), "Aleatorio", Facts::selectionSort, initializer.getAleatorio());
+        runner("Selection sort", String.valueOf(n), "Melhor", Facts::selectionSort, initializer.getMelhor());
+        runner("Selection sort", String.valueOf(n), "Pior", Facts::selectionSort, initializer.getPior());
 
-        runner("Insertion sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::insertionSort, initializer.getAleatorio());
-        runner("Insertion sort", String.valueOf(n)+ " mil", "Melhor", Facts::insertionSort, initializer.getMelhor());
-        runner("Insertion sort", String.valueOf(n)+ " mil", "Pior", Facts::insertionSort, initializer.getPior());
+        runner("Insertion sort", String.valueOf(n), "Aleatorio", Facts::insertionSort, initializer.getAleatorio());
+        runner("Insertion sort", String.valueOf(n), "Melhor", Facts::insertionSort, initializer.getMelhor());
+        runner("Insertion sort", String.valueOf(n), "Pior", Facts::insertionSort, initializer.getPior());
 
-        runner("Merge sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::mergeSort, initializer.getAleatorio());
-        runner("Merge sort", String.valueOf(n)+ " mil", "Melhor", Facts::mergeSort, initializer.getMelhor());
-        runner("Merge sort", String.valueOf(n)+ " mil", "Pior", Facts::mergeSort, initializer.getPior());
+        runner("Merge sort", String.valueOf(n), "Aleatorio", Facts::mergeSort, initializer.getAleatorio());
+        runner("Merge sort", String.valueOf(n), "Melhor", Facts::mergeSort, initializer.getMelhor());
+        runner("Merge sort", String.valueOf(n), "Pior", Facts::mergeSort, initializer.getPior());
 
-        runner("Heap sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::heapSort, initializer.getAleatorio());
-        runner("Heap sort", String.valueOf(n)+ " mil", "Melhor", Facts::heapSort, initializer.getMelhor());
-        runner("Heap sort", String.valueOf(n)+ " mil", "Pior", Facts::heapSort, initializer.getPior());
+        runner("Heap sort", String.valueOf(n), "Aleatorio", Facts::heapSort, initializer.getAleatorio());
+        runner("Heap sort", String.valueOf(n), "Melhor", Facts::heapSort, initializer.getMelhor());
+        runner("Heap sort", String.valueOf(n), "Pior", Facts::heapSort, initializer.getPior());
 
-        runner("Counting sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::countingSort, initializer.getAleatorio());
-        runner("Counting sort", String.valueOf(n)+ " mil", "Melhor", Facts::countingSort, initializer.getMelhor());
-        runner("Counting sort", String.valueOf(n)+ " mil", "Pior", Facts::countingSort, initializer.getPior());
+        runner("Counting sort", String.valueOf(n), "Aleatorio", Facts::countingSort, initializer.getAleatorio());
+        runner("Counting sort", String.valueOf(n), "Melhor", Facts::countingSort, initializer.getMelhor());
+        runner("Counting sort", String.valueOf(n), "Pior", Facts::countingSort, initializer.getPior());
 
-        runner("Quick sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::quickSort, initializer.getAleatorio());
-        runner("Quick sort", String.valueOf(n)+ " mil", "Melhor", Facts::quickSort, initializer.getMelhor());
-        runner("Quick sort", String.valueOf(n)+ " mil", "Pior", Facts::quickSort, initializer.getPior());
+        runner("Quick sort", String.valueOf(n), "Aleatorio", Facts::quickSort, initializer.getAleatorio());
+        runner("Quick sort", String.valueOf(n), "Melhor", Facts::quickSort, initializer.getMelhor());
+        runner("Quick sort", String.valueOf(n), "Pior", Facts::quickSort, initializer.getPior());
 
-        n = 50;
-        initializer = new Initializer(n);
-        runner("Bubble sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::bubbleSort, initializer.getAleatorio());
-        runner("Bubble sort", String.valueOf(n)+ " mil", "Melhor", Facts::bubbleSort, initializer.getMelhor());
-        runner("Bubble sort", String.valueOf(n)+ " mil", "Pior", Facts::bubbleSort, initializer.getPior());
+        n=50;
+        runner("Bubble sort", String.valueOf(n), "Aleatorio", Facts::bubbleSort, initializer.getAleatorio());
+        runner("Bubble sort", String.valueOf(n), "Melhor", Facts::bubbleSort, initializer.getMelhor());
+        runner("Bubble sort", String.valueOf(n), "Pior", Facts::bubbleSort, initializer.getPior());
 
-        runner("Selection sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::selectionSort, initializer.getAleatorio());
-        runner("Selection sort", String.valueOf(n)+ " mil", "Melhor", Facts::selectionSort, initializer.getMelhor());
-        runner("Selection sort", String.valueOf(n)+ " mil", "Pior", Facts::selectionSort, initializer.getPior());
+        runner("Selection sort", String.valueOf(n), "Aleatorio", Facts::selectionSort, initializer.getAleatorio());
+        runner("Selection sort", String.valueOf(n), "Melhor", Facts::selectionSort, initializer.getMelhor());
+        runner("Selection sort", String.valueOf(n), "Pior", Facts::selectionSort, initializer.getPior());
 
-        runner("Insertion sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::insertionSort, initializer.getAleatorio());
-        runner("Insertion sort", String.valueOf(n)+ " mil", "Melhor", Facts::insertionSort, initializer.getMelhor());
-        runner("Insertion sort", String.valueOf(n)+ " mil", "Pior", Facts::insertionSort, initializer.getPior());
+        runner("Insertion sort", String.valueOf(n), "Aleatorio", Facts::insertionSort, initializer.getAleatorio());
+        runner("Insertion sort", String.valueOf(n), "Melhor", Facts::insertionSort, initializer.getMelhor());
+        runner("Insertion sort", String.valueOf(n), "Pior", Facts::insertionSort, initializer.getPior());
 
-        runner("Merge sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::mergeSort, initializer.getAleatorio());
-        runner("Merge sort", String.valueOf(n)+ " mil", "Melhor", Facts::mergeSort, initializer.getMelhor());
-        runner("Merge sort", String.valueOf(n)+ " mil", "Pior", Facts::mergeSort, initializer.getPior());
+        runner("Merge sort", String.valueOf(n), "Aleatorio", Facts::mergeSort, initializer.getAleatorio());
+        runner("Merge sort", String.valueOf(n), "Melhor", Facts::mergeSort, initializer.getMelhor());
+        runner("Merge sort", String.valueOf(n), "Pior", Facts::mergeSort, initializer.getPior());
 
-        runner("Heap sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::heapSort, initializer.getAleatorio());
-        runner("Heap sort", String.valueOf(n)+ " mil", "Melhor", Facts::heapSort, initializer.getMelhor());
-        runner("Heap sort", String.valueOf(n)+ " mil", "Pior", Facts::heapSort, initializer.getPior());
+        runner("Heap sort", String.valueOf(n), "Aleatorio", Facts::heapSort, initializer.getAleatorio());
+        runner("Heap sort", String.valueOf(n), "Melhor", Facts::heapSort, initializer.getMelhor());
+        runner("Heap sort", String.valueOf(n), "Pior", Facts::heapSort, initializer.getPior());
 
-        runner("Counting sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::countingSort, initializer.getAleatorio());
-        runner("Counting sort", String.valueOf(n)+ " mil", "Melhor", Facts::countingSort, initializer.getMelhor());
-        runner("Counting sort", String.valueOf(n)+ " mil", "Pior", Facts::countingSort, initializer.getPior());
+        runner("Counting sort", String.valueOf(n), "Aleatorio", Facts::countingSort, initializer.getAleatorio());
+        runner("Counting sort", String.valueOf(n), "Melhor", Facts::countingSort, initializer.getMelhor());
+        runner("Counting sort", String.valueOf(n), "Pior", Facts::countingSort, initializer.getPior());
 
-        runner("Quick sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::quickSort, initializer.getAleatorio());
-        runner("Quick sort", String.valueOf(n)+ " mil", "Melhor", Facts::quickSort, initializer.getMelhor());
-        runner("Quick sort", String.valueOf(n)+ " mil", "Pior", Facts::quickSort, initializer.getPior());
-
-
+        runner("Quick sort", String.valueOf(n), "Aleatorio", Facts::quickSort, initializer.getAleatorio());
+        runner("Quick sort", String.valueOf(n), "Melhor", Facts::quickSort, initializer.getMelhor());
+        runner("Quick sort", String.valueOf(n), "Pior", Facts::quickSort, initializer.getPior());
 
     }
 
