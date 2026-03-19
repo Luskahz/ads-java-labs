@@ -1,4 +1,4 @@
-package br.edu.ifsp.ads.dataArchitecture.atividade_18_03;
+package br.edu.ifsp.ads.dataArchitecture.filaEPilhas;
 
 public class Fila {
     private No cabeca; // cabeca é o nó de controle da lista o "início" da implementação anterior

@@ -1,6 +1,4 @@
-package br.edu.ifsp.ads.dataArchitecture.atividade_18_03;
-
-import org.w3c.dom.ls.LSOutput;
+package br.edu.ifsp.ads.dataArchitecture.filaEPilhas;
 
 public class Pilha {
     private No topo; // topo é o nó de controle da lista o "início" da implementação anterior

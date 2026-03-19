@@ -21,9 +21,9 @@ public class main {
         double tempoMs = tempoNs / 1_000_000.0;
 
         System.out.printf(
-                "Tempo de ordenacao vet %s, função %s, vetor de %s valores: %.4f ms%n",
-                tipoVet,
+                "%s;%s;%s;%.4f%n",
                 nomeAlgoritmo,
+                tipoVet,
                 tamanhoVetor,
                 tempoMs
         );
@@ -32,6 +32,7 @@ public class main {
 
     public static void main(String[] args) {
         int n = 5;
+        System.out.println("nome_algoritmo, tipo_vetor, tamanho_vetor, tempo_ms");
 
         Initializer initializer = new Initializer(n); // aqui eu crio a base que vou testar, meu teste vai rodar 4 vezes, pra n pesar na maquina, eu só mudo o numero no parametro pra testar com o tamanho diferente
         runner("Bubble sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::bubbleSort, initializer.getAleatorio());
@@ -151,7 +152,6 @@ public class main {
         runner("Quick sort", String.valueOf(n)+ " mil", "Aleatorio", Facts::quickSort, initializer.getAleatorio());
         runner("Quick sort", String.valueOf(n)+ " mil", "Melhor", Facts::quickSort, initializer.getMelhor());
         runner("Quick sort", String.valueOf(n)+ " mil", "Pior", Facts::quickSort, initializer.getPior());
-
 
 
 
