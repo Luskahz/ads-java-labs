@@ -8,9 +8,9 @@ public class Pilha {
     }
 
     public void empilhar(int x){
-        No novo = new No(x);// crio o no
-        novo.prox = topo;// atribuo a lista já existente após o nó
-        topo = novo;// defino o topo como o nó recem colocado
+        No novo = new No(x);
+        novo.prox = topo;
+        topo = novo;
     }
     public void desempilhar(){
         if(topo==null){

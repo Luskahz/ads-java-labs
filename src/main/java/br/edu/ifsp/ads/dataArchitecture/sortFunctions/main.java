@@ -64,6 +64,7 @@ public class main {
         runner("Quick sort", String.valueOf(n), "Pior", Facts::quickSort, initializer.getPior());
 
         n = 10;
+        initializer = new Initializer(n);
         runner("Bubble sort", String.valueOf(n), "Aleatorio", Facts::bubbleSort, initializer.getAleatorio());
         runner("Bubble sort", String.valueOf(n), "Melhor", Facts::bubbleSort, initializer.getMelhor());
         runner("Bubble sort", String.valueOf(n), "Pior", Facts::bubbleSort, initializer.getPior());
@@ -93,6 +94,7 @@ public class main {
         runner("Quick sort", String.valueOf(n), "Pior", Facts::quickSort, initializer.getPior());
 
         n=30;
+        initializer = new Initializer(n);
         runner("Bubble sort", String.valueOf(n), "Aleatorio", Facts::bubbleSort, initializer.getAleatorio());
         runner("Bubble sort", String.valueOf(n), "Melhor", Facts::bubbleSort, initializer.getMelhor());
         runner("Bubble sort", String.valueOf(n), "Pior", Facts::bubbleSort, initializer.getPior());
@@ -122,6 +124,7 @@ public class main {
         runner("Quick sort", String.valueOf(n), "Pior", Facts::quickSort, initializer.getPior());
 
         n=50;
+        initializer = new Initializer(n);
         runner("Bubble sort", String.valueOf(n), "Aleatorio", Facts::bubbleSort, initializer.getAleatorio());
         runner("Bubble sort", String.valueOf(n), "Melhor", Facts::bubbleSort, initializer.getMelhor());
         runner("Bubble sort", String.valueOf(n), "Pior", Facts::bubbleSort, initializer.getPior());
