@@ -52,29 +52,13 @@ public class ListaLigadaCircular {
         }
     }
 
-    static void josephus(int s) {
-
-        //1, 2, 3, 4, 5, 6, 7 (s=3)
-        if (inicio == null || s <= 0) return;// aqui eu saio se o inicio for null ou se n vir o s
-
-        No tmp = inicio; // inicio a contagem da lista
-
-        while (tmp.prox != inicio) {
-            tmp = tmp.prox;
-        }//levei o temp pro fim da lista (tmp = 7)
-
-        while (tmp != tmp.prox) {//agora isso vai rodar até eu finalizar o josephus
-            for (int i = 1; i < s; i++) {
-                tmp = tmp.prox;// eu to no ultimo nó, e vou andar até o i ser s-1, quando o i for s-1 eu apago o proximo
-                //i=1 = tmp = 1
-                //i=2 = tmp = 2
-                //parou, tmp = 2
-            }
-            tmp.prox = tmp.prox.prox;
-            // 3 = 4
+    static void josephus(int s){
+        while(inicio!=inicio.prox){ // aqui a função vai rodar até ficar só o nó sobrevivente
+            for(int i=1;i<s-1;i++) // enquanto tem mais de 1 nó na lista, eu tenho o i, i inicia em 1, i vai até o valor a ser excluido -1, o i incrementa a cada execução
+                inicio = inicio.prox; // resumindo, aqui eu to indo até o nó anterior ao que vai ser excluido, para ter acesso a ele e o prox.
+            inicio.prox = inicio.prox.prox; // o proximo é oque vai ser excluido, o proximo dele, vai passar a ser ele, aqui ele foi excluido
+            inicio = inicio.prox;  // aqui eu sigo o avanço do atual, o while reinicia e o loop vai até restar o sobrevivente
         }
-
-        inicio = tmp;
     }
 
 
