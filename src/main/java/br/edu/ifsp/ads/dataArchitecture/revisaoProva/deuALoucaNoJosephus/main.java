@@ -38,31 +38,6 @@ public class main {
 
     }
 
-    static void josephus(int s, int j){
-        while(inicio!=inicio.prox){
-
-
-
-            for(int i=1;i<s-1;i++){
-                inicio = inicio.prox;
-            }
-            inicio.prox.prox.ant = inicio;
-            inicio.prox = inicio.prox.prox;
-            inicio = inicio.prox;
-
-
-            for(int i=1;i<j-1;i++) {
-                inicio = inicio.ant;
-            }
-            inicio.ant.ant.prox = inicio;
-            inicio.ant = inicio.ant.ant;
-            inicio = inicio.ant;
-
-
-
-        }
-    }
-
     public static void insereFinal(int x){
         No no = new No(x);
         if(inicio == null){
@@ -97,4 +72,44 @@ public class main {
             } while (temp != inicio);
         }
     }
+    static void josephusLoucoEderson(int s, int j){
+        while(inicio != inicio.prox){
+            for(int i=0; i<(s-1); i++)
+                inicio = inicio.prox;
+            System.out.println("removendo "+inicio.valor);
+            inicio.ant.prox = inicio.prox;
+            inicio.prox.ant = inicio.ant;
+            inicio = inicio.prox;
+
+            for(int i=0; i<(j-1); i++)
+                inicio = inicio.ant;
+            System.out.println("removendo "+inicio.valor);
+            inicio.ant.prox = inicio.prox;
+            inicio.prox.ant = inicio.ant;
+            inicio = inicio.ant;
+        }
+        System.out.println("Sobrevivente: "+inicio.valor);
+    }
+    static void josephus(int s, int j){
+        while(inicio!=inicio.prox){
+            for(int i=1;i<s-1;i++)
+                inicio = inicio.prox;
+            inicio.prox.prox.ant = inicio;
+            inicio.prox = inicio.prox.prox;
+            inicio = inicio.prox;
+
+
+            for(int i=1;i<j-1;i++) {
+                inicio = inicio.ant;
+            }
+            inicio.ant.ant.prox = inicio;
+            inicio.ant = inicio.ant.ant;
+            inicio = inicio.ant;
+
+            System.out.println("Sobrevivente: "+inicio.valor);
+
+
+        }
+    }
+
 }

@@ -87,5 +87,19 @@ public class main {
 
     }
 
+    static int centroEderson(){
+        No tempP = inicio.prox;
+        No tempA = inicio.ant;
+
+        while((tempP!=tempA) && (tempP.prox != tempA)){
+            tempP = tempP.prox;
+            tempA = tempA.ant;
+        }
+        if(tempP == tempA)
+            return tempP.valor;
+        else
+            return (tempP.valor + tempA.valor)/2;
+    }
+
 }
 
