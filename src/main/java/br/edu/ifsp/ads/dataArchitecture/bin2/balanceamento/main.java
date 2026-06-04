@@ -7,40 +7,97 @@ public class main {
 
     public static void main(String[] args) {
         int[] valores = {
-           1, 2, 3, 4, 5, 6, 7
+           10, 20, 30
         };
 
         for (int x : valores) {
-            System.out.println("Inserindo: " + x);
             inserirBinario(x);
         }
-
         exibeArvore(raiz);
-        System.out.println("Profundidade: " + profundidade(raiz));
-        exibirFatBalRamos(raiz);
+        //System.out.println("Profundidade: " + profundidade(raiz));
+        //exibirFatBalRamos(raiz);
 
-        while(!threeEhAVL(raiz)){// isso vai rodar enquanto a arvore estiver desbalanceada
 
-        }
+
 
     }
 
-    public static No balancear(No ramo) {
-        if (!isVazio(ramo)) {
-            balancear(ramo.left);// aqui ela foi pra esquerda o maximo que deu, agora ela precisa balancear e ir volrando
-            balancear(ramo.right);
-            // preciso verificar o fator de balanceamento do nó
-            if(!ehAVL(fatBalRamo(ramo))){// se não cair nesse if, o nó está balanceado, ai ele avança. se cair..
-                // se estiver desbalanceado preciso identificar qual o lado está desbalanceado pra fazer a rotação
-                if(ehAVL(fatBalRamo(ramo.right))&& !ehAVL(fatBalRamo(ramo.left))){ // se a esquerda estiver desbalanceada eu sei que eu tenho que rodar o ramo pra esquerda
+
+
+    public static No balancear(No ramo){
+        if(!isVazio(ramo)){
+            balancear(ramo.left);
+            if(!isBalanced(ramo)){// a partir do momento que sei que não está balanceado, eu preciso fazer duas verificações pra saber como girar. se vai ser XX ou XY
+
+                int fb = fatBalRamo(ramo);// eu ainda preciso verificar o fatB, pois o indicador vai definir pra que lado vai ser o giro
+                if (isPositive(fb)) {
+                    // aqui eu sei que o giro sempre vai ser pra direita. e vou verificar os ramos da esquerda
+                    // após saber que é pra direita, eu preciso ver se é simples ou rot dupla.
+                    // pra isso eu preciso saber o fb do filho da esquerda
+                    int fatBFilho = fatBalRamo(ramo.left);
+                    if (fatBFilho >= 0) {
+                        ramo = girarDireita(ramo);
+                    } else {
+                        ramo.left = girarEsquerda(ramo.left);
+                        ramo = girarDireita(ramo);
+                    }
+                } else{
                     girarEsquerda(ramo);
-                } else if(!ehAVL(fatBalRamo(ramo.right))&& ehAVL(fatBalRamo(ramo.left))){
-                    girarDireita(ramo);
                 }
-            }
 
+            }
+            balancear(ramo.right);
+        }
+        return null;
+    }
+
+
+
+    /**
+     * Identifica a direção do filho existente de um nó.
+     *
+     * <p>Retorna:
+     * <ul>
+     *     <li>{@code 0} se o nó for folha;</li>
+     *     <li>{@code 1} se o nó possuir apenas filho à direita;</li>
+     *     <li>{@code 2} se o nó possuir filho à esquerda.</li>
+     * </ul>
+     *
+     * <p>Observação: caso o nó possua dois filhos, o retorno será {@code 2},
+     * pois a verificação prioriza a existência do filho à esquerda.
+     *
+     * @param ramo nó da árvore a ser analisado
+     * @return código indicando a direção do filho existente
+     */
+    public static int childDirection(No ramo) {
+        if (!ehFolha(ramo)) {
+            if (isVazio(ramo.left)) {
+                return 1;
+            } else {
+                return 2;
+            }
+        } else {
+            return 0;
         }
     }
+
+
+//    public static No balancear(No ramo) {
+//        if (!isVazio(ramo)) {
+//            balancear(ramo.left);// aqui ela foi pra esquerda o maximo que deu, agora ela precisa balancear e ir volrando
+//            balancear(ramo.right);
+//            // preciso verificar o fator de balanceamento do nó
+//            if(!ehAVL(fatBalRamo(ramo))){// se não cair nesse if, o nó está balanceado, ai ele avança. se cair..
+//                // se estiver desbalanceado preciso identificar qual o lado está desbalanceado pra fazer a rotação
+//                if(ehAVL(fatBalRamo(ramo.right))&& !ehAVL(fatBalRamo(ramo.left))){ // se a esquerda estiver desbalanceada eu sei que eu tenho que rodar o ramo pra esquerda
+//                    girarEsquerda(ramo);
+//                } else if(!ehAVL(fatBalRamo(ramo.right))&& ehAVL(fatBalRamo(ramo.left))){
+//                    girarDireita(ramo);
+//                }
+//            }
+//
+//        }
+//    }
 
 
 
@@ -104,7 +161,7 @@ public class main {
 
 
 
-    public static boolean ramoEhAVL(No ramo){
+    public static boolean isBalanced(No ramo){
         return fatBalRamo(ramo) <= 1 && fatBalRamo(ramo) >= -1;
     }
 
@@ -121,7 +178,7 @@ public class main {
             return true;
         }
 
-        if (!ramoEhAVL(ramo)) {
+        if (!isBalanced(ramo)) {
             return false;
         }
 
@@ -135,7 +192,7 @@ public class main {
     public static void exibirRecursivo(No ramo){
         if(!isVazio(ramo)){
             exibirRecursivo(ramo.left);
-            System.out.println(ramo.value);
+            // processamento, baseado no...
             exibirRecursivo(ramo.right);
         }
     }
@@ -218,10 +275,10 @@ public class main {
     }
 
     public static No girarDireita(No ramo){
-        No tmp = ramo.left; //torna o temp o filho a esquerda do ramo
-        ramo.left = tmp.right; // o filho a esquerda do ramo, passa a serer o filho a direita do temp.
-        tmp.right = ramo; // e o filho a direita do temp passa a ser o ramo
-        return tmp; //retorno o temp
+        No tmp = ramo.left;
+        ramo.left = tmp.right;
+        tmp.right = ramo;
+        return tmp;
     }
 
     public static No girarEsquerda(No x){
@@ -232,12 +289,13 @@ public class main {
     }
 
 
-
-
     public static boolean isVazio(No no){
         return no == null;
     }
     public static boolean ehAVL(int x){
         return x <= 1 && x >= -1;
     }
+    public static boolean ehFolha(No ramo){ return isVazio(ramo.left) && isVazio(ramo.right);}
+    public static boolean isPositive(int x){ return x>0;}
+    public static boolean isZero(int x){return x == 0;}
 }
