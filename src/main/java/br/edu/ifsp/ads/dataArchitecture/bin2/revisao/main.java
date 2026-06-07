@@ -16,7 +16,7 @@ public class main {
 
         }
         Utils.exibeArvore(root);
-        if(exists(20, root)){
+        if(RemovalMethods.exists(20, root)){
             System.out.println("existe");
         }else{
             System.out.println("não existe");
