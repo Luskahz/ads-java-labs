@@ -4,7 +4,7 @@ import br.edu.ifsp.ads.dataArchitecture.bin2.revisao.model.Node;
 import br.edu.ifsp.ads.dataArchitecture.bin2.revisao.utils.Utils;
 
 
-public class main {
+public class Main {
     public static Node root;
 
     public static void main(String[] args) {
