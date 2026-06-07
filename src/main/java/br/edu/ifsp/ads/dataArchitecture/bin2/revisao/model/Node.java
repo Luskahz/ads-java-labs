@@ -1,4 +1,4 @@
-package br.edu.ifsp.ads.dataArchitecture.bin2.revisao.metodosBasicos.model;
+package br.edu.ifsp.ads.dataArchitecture.bin2.revisao.model;
 
 public class Node {
     public int value;
