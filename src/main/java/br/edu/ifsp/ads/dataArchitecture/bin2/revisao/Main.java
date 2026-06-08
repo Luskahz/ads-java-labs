@@ -9,18 +9,15 @@ public class Main {
 
     public static void main(String[] args) {
         int[] numeros = {
-                50, 30, 70, 20, 40, 60, 80
+                50, 70, 30, 40, 20, 31, 32
         };
         for(int numero : numeros){
-            root = BasicMethods.insert(root, numero);
+            root = RemovalMethods.insertUnique(root, numero);
+        }
 
-        }
         Utils.exibeArvore(root);
-        if(RemovalMethods.exists(20, root)){
-            System.out.println("existe");
-        }else{
-            System.out.println("não existe");
-        }
+        RemovalMethods.remove(root, 30);
+        Utils.exibeArvore(root);
 
     }
 
