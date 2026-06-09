@@ -140,7 +140,7 @@ public class RemovalMethods {
     }
 
 
-    static Node remove(Node root, int value) {
+    public static Node remove(Node root, int value) {
         System.out.println("vamos remover o: " + value);
 
         if (Utils.isNull(root)) {

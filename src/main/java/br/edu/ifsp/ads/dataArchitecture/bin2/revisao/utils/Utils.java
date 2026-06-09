@@ -1,6 +1,10 @@
 package br.edu.ifsp.ads.dataArchitecture.bin2.revisao.utils;
 
+import br.edu.ifsp.ads.dataArchitecture.bin2.revisao.RemovalMethods;
 import br.edu.ifsp.ads.dataArchitecture.bin2.revisao.model.Node;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Utils {
     public static boolean isNull(Node branch){
@@ -194,7 +198,40 @@ public class Utils {
         }
     }
 
+    public static List<Integer> getElementsInOrder(Node root) {
+        List<Integer> elementos = new ArrayList<>();
+        preencherEmOrdem(root, elementos);
+        return elementos;
+    }
 
+    private static void preencherEmOrdem(Node node, List<Integer> elementos) {
+        if (node == null) {
+            return;
+        }
+
+        preencherEmOrdem(node.left, elementos);
+        elementos.add(node.value);
+        preencherEmOrdem(node.right, elementos);
+    }
+
+    public static Node removerMultiplos(Node root, int[] divisores) {
+        List<Integer> valores = getElementsInOrder(root);
+
+        for (int valor : valores) {
+            for (int divisor : divisores) {
+                if (divisor == 0) {
+                    throw new IllegalArgumentException("Divisor não pode ser zero.");
+                }
+
+                if (valor % divisor == 0) {
+                    root = RemovalMethods.remove(root, valor);
+                    break;
+                }
+            }
+        }
+
+        return root;
+    }
 
 
 }
