@@ -179,6 +179,21 @@ public class Utils {
         }
     }
 
+    public static void showTree(Node node){
+        if(!isNull(node)){
+            showTree(node.left);
+            soutValue(node);
+            showTree(node.right);
+        }
+    }
+
+
+    public static boolean balanceFactorIsAVL(int fb){
+        {
+            return fb <= 1 && fb >= -1;
+        }
+    }
+
 
 
 
