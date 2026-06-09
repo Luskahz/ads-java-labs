@@ -90,52 +90,78 @@ public class RemovalMethods {
             }
         }
     }
-
-    public static void RemoveTwoChildren(Node node, int value){
-        if(Utils.isNull(node)) {
+    public static Node RemoveTwoChildren(Node node, int value) {
+        if (Utils.isNull(node)) {
             System.out.println("nó vazio");
-            return;
+            return null;
         }
+
         Node dad = Utils.findDadNodeInTree(value, node);
-        if(Utils.isNull(dad)){
-            System.out.println("Não pode achar o nó pai");
-            return;
-        }
 
-        Node removed = Utils.findChildByValue(dad, value); // aqui o 30
-        Node successor = Utils.smallestNode(Utils.findChildByValue(dad, value).right); // aqui o 31
-        Node sucessorDad = Utils.findDadNodeInTree(successor.value, node); // 40
+        Node removed;
 
-
-
-        if(!Utils.isNull(dad.left)){
-            if(dad.left.value == value){
-                dad.left = successor;
+        if (Utils.isNull(dad)) {
+            if (node.value != value) {
+                System.out.println("Não pode achar o nó pai");
+                return node;
             }
+
+            removed = node;
+        } else {
+            removed = Utils.findChildByValue(dad, value);
         }
-        if(!Utils.isNull(dad.right)){
-            if(dad.right.value == value){
-                dad.right = successor;
+
+        Node successor = Utils.smallestNode(removed.right);
+        Node successorDad = Utils.findDadNodeInTree(successor.value, node);
+
+        if (successorDad != removed) {
+            if (successorDad.left == successor) {
+                successorDad.left = successor.right;
+            } else {
+                successorDad.right = successor.right;
             }
+
+            successor.right = removed.right;
         }
+
+        successor.left = removed.left;
+
+        if (Utils.isNull(dad)) {
+            return successor;
+        }
+
+        if (dad.left == removed) {
+            dad.left = successor;
+        } else {
+            dad.right = successor;
+        }
+
+        return node;
     }
 
 
-    static void remove(Node root, int value){
+    static Node remove(Node root, int value) {
         System.out.println("vamos remover o: " + value);
-        if(root.value == value){
-            if(Utils.isNull(root.left) && Utils.isNull(root.right))
+
+        if (Utils.isNull(root)) {
+            return null;
+        }
+
+        if (root.value == value) {
+            if (Utils.isNull(root.left) && Utils.isNull(root.right)) {
                 root = null;
-            else
-            if(!Utils.isNull(root.left) && !Utils.isNull(root.right))
-                RemoveTwoChildren(root, value);
-            else
-            if(Utils.isNull(root.left))
+            } else if (!Utils.isNull(root.left) && !Utils.isNull(root.right)) {
+                root = RemoveTwoChildren(root, value);
+            } else if (Utils.isNull(root.left)) {
                 root = root.right;
-            else
+            } else {
                 root = root.left;
-        }else
+            }
+        } else {
             removeNode(root, value);
+        }
+
+        return root;
     }
 
     static void removeNode(Node root, int value){
