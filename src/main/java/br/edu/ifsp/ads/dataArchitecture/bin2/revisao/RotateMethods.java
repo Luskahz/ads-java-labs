@@ -14,17 +14,53 @@ public class RotateMethods {
 
     }
 
-    public static boolean threeIsAVL(Node node) {
-        if (Utils.isNull(node)) {
+    public static boolean treeIsAVL(Node root){
+        if(Utils.isNull(root)){
             return true;
         }
-
-        if (!nodeIsAVL(node)) {
-            return false;
-        }
-
-        return threeIsAVL(node.left) && threeIsAVL(node.right);
+        return nodeIsAVL(root)
+                && treeIsAVL(root.left)
+                && treeIsAVL(root.right);
     }
+
+    public static Node rotate(Node node, int direction) {
+        return switch (direction) {
+            case -1 -> rotateLeft(node);
+            case 1 -> rotateRight(node);
+            default -> throw new IllegalArgumentException(
+                    "Direction must be -1 (left) or 1 (right)"
+            );
+        };
+    }
+
+
+    public static Node TurnNodeAVL(Node node){
+        if(!Utils.isNull(node)){
+            node.left = TurnNodeAVL(node.left);
+            if(!nodeIsAVL(node)){ // se tiver balanciado, sigo;
+                if (Utils.isPositive(balanceFactor(node))) {
+
+                    if (Utils.isPositive(balanceFactor(node.left))){
+                        node = rotate(node, 1);
+                    } else {
+                        node.left = rotate(node.left, -1);
+                        node = rotate(node, 1);
+                    }
+                } else{
+                    if (!Utils.isPositive(balanceFactor(node.right))){
+                        node = rotate(node, 1);
+                    } else {
+                        node.right = rotate(node.right, -1);
+                        node = rotate(node, 1);
+                    }
+                }
+
+            }
+            node.right = TurnNodeAVL(node.right);
+        }
+        return node;
+    }
+
 
 
     /**
@@ -57,50 +93,38 @@ public class RotateMethods {
     }
 
 
-    public static Node rotate(Node node, int direction) {
-        return switch (direction) {
-            case -1 -> rotateLeft(node);
-            case 1 -> rotateRight(node);
-            default -> throw new IllegalArgumentException(
-                    "Direction must be -1 (left) or 1 (right)"
-            );
-        };
-    }
 
-    public static void makeTreeAVL(Node root){
 
-    }
-
-    public static Node turnAVL(Node node) {
-        if (Utils.isNull(node)) {
-            return null;
-        }
-
-        node.left = turnAVL(node.left);
-        node.right = turnAVL(node.right);
-
-        int fb = balanceFactor(node);
-
-        if (fb > 1) {
-            int fbFilhoEsquerdo = balanceFactor(node.left);
-
-            if (fbFilhoEsquerdo >= 0) {
-                node = rotateRight(node); // caso LL
-            } else {
-                node.left = rotateLeft(node.left); // caso LR
-                node = rotateRight(node);
-            }
-        } else if (fb < -1) {
-            int fbFilhoDireito = balanceFactor(node.right);
-
-            if (fbFilhoDireito <= 0) {
-                node = rotateLeft(node); // caso RR
-            } else {
-                node.right = rotateRight(node.right); // caso RL
-                node = rotateLeft(node);
-            }
-        }
-
-        return node;
-    }
+//    public static Node turnAVL(Node node) {
+//        if (Utils.isNull(node)) {
+//            return null;
+//        }
+//
+//        node.left = turnAVL(node.left);
+//        node.right = turnAVL(node.right);
+//
+//        int fb = balanceFactor(node);
+//
+//        if (fb > 1) {
+//            int fbFilhoEsquerdo = balanceFactor(node.left);
+//
+//            if (fbFilhoEsquerdo >= 0) {
+//                node = rotateRight(node); // caso LL
+//            } else {
+//                node.left = rotateLeft(node.left); // caso LR
+//                node = rotateRight(node);
+//            }
+//        } else if (fb < -1) {
+//            int fbFilhoDireito = balanceFactor(node.right);
+//
+//            if (fbFilhoDireito <= 0) {
+//                node = rotateLeft(node); // caso RR
+//            } else {
+//                node.right = rotateRight(node.right); // caso RL
+//                node = rotateLeft(node);
+//            }
+//        }
+//
+//        return node;
+//    }
 }

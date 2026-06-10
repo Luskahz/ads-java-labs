@@ -198,6 +198,10 @@ public class Utils {
         }
     }
 
+    public static boolean isPositive(int x){
+        return x > 0;
+    }
+
     public static List<Integer> getElementsInOrder(Node root) {
         List<Integer> elementos = new ArrayList<>();
         preencherEmOrdem(root, elementos);
